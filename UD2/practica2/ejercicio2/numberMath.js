@@ -1,24 +1,30 @@
 const pi = Math.PI.toFixed(5);
 const radio = 3.5;
 
+//A
 const area = pi * Math.pow(radio, 2);
 console.log(area);
 
-
+//B
 const areaString = area.toString();
 console.log(areaString)
 
+//C
 console.log(areaString.slice(0,6))
 
+//D
 const areaInt = parseInt(areaString, 10);
 console.log(areaInt)
 
+//E
 const areaRound = Math.round(area);
 console.log(areaRound)
 
+//F
 const areaMult = parseInt(Math.random()*20, 10) * area;
 console.log(areaMult)
 
+//G
 if (Number.isFinite(radio)){
     const area2 = pi * Math.pow(radio, 2);
     console.log(area2);
