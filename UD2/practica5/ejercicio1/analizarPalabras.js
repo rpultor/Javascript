@@ -1,7 +1,7 @@
 function cuentaPalabras(palabras){
     const palabrasContadas = palabras.filter((palabra) => palabra == "montaña");
     let cont = palabrasContadas.length;
-    console.log(cont);
+    console.log("Veces que aparece \"montaña\": " + cont);
     return cont;
 }
 
@@ -13,11 +13,12 @@ function palabrasCon4(palabras){
 
 function encuentraPrimeraVez(palabras, palabra){
     const buscaPalabras = palabras.findIndex((busca) => busca == palabra);
-    console.log(buscaPalabras);
+    console.log("Primera posición de \"río\": " + buscaPalabras);
     return buscaPalabras;
 }
 
 const palabras = ["sol", "montaña", "río", "bosque", "mariposa", "luz", "montaña"];
 cuentaPalabras(palabras);
 palabrasCon4(palabras);
-encuentraPrimeraVez(palabras, "hola");
+encuentraPrimeraVez(palabras, "río");
+encuentraPrimeraVez(palabras, "nube");
