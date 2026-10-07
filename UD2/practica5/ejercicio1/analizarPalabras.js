@@ -22,3 +22,6 @@ cuentaPalabras(palabras);
 palabrasCon4(palabras);
 encuentraPrimeraVez(palabras, "río");
 encuentraPrimeraVez(palabras, "nube");
+
+//hacer comprobaciones que se muestren directamente en el documento
+document.body.innerHTML= typeof(2)
