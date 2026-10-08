@@ -3,8 +3,6 @@ let inst;
 do {
     let posicion = pasillo.indexOf("S");
     inst = String(prompt(pasillo + "\nIntroduce 'derecha' o 'izquierda' para mover al robot, introduce 'salir' para terminar"));
-    document.body.innerHTML = typeof(inst);
-    //no detecta nada como ninguna de las opciones del switch y salta directamente al default
     switch(inst.toLowerCase()){
         case "derecha":
             if (pasillo[posicion+1] != "#" && posicion+1 < pasillo.length){
@@ -29,6 +27,8 @@ do {
             }
             break;
         case "salir":
+            pasillo[pasillo.indexOf("S")] = "R";
+            document.body.innerHTML = pasillo;
             console.log("Gracias por mover al robot");
             break;
         default:
