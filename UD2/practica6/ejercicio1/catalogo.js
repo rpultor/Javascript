@@ -4,7 +4,11 @@ class Catalogo {
     }
 
     addLibro(libro){
-        this.libros.push(libro);
+        if(this.comprobarRepetidos(libro.titulo)){
+            this.libros.push(libro);
+        } else {
+            console.log("El libro está repetido, por lo que no se añadirá al catálogo");
+        };
     }
 
     deleteLibro(titulo){
@@ -21,5 +25,13 @@ class Catalogo {
         this.libros.forEach(select => {
             this.checkLibro(select.titulo);
         });
+    }
+
+    comprobarRepetidos(titulo){
+        let comprobar = true;
+        this.libros.forEach(select => {
+            if (select.titulo != titulo) {return false}
+        });
+        return comprobar;
     }
 }

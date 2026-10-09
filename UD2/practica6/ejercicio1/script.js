@@ -11,3 +11,6 @@ catalogo.listLibro();
 
 catalogo.deleteLibro("Hola 2");
 catalogo.listLibro();
+
+catalogo.addLibro(otroLibroMas);
+catalogo.listLibro();
