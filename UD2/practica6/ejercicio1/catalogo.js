@@ -1,27 +1,39 @@
-const catalogo = {
-    constructor(libro){
-        this.libro.push(libro);
-    },
+class Catalogo {
+    constructor(...libros){
+        this.libros = libros;
+    }
 
     addLibro(libro){
-        this.libro.push(libro);
-    },
+        this.libros.push(libro);
+    }
 
     deleteLibro(titulo){
-        libro.array.forEach(select => {
-            if (select.titulo === titulo) this.splice(select)
-        });
-    },
+        this.libros.splice(this.libros.indexOf(titulo))
+    }
 
     checkLibro(titulo){
-        libro.array.forEach(select => {
-            if (select.titulo === titulo) {this.describir()} else {document.body.innerHTML += "Ese libro no existe"}
+        this.libros.forEach(select => {
+            if (select.titulo === titulo) select.describir()
         });
-    },
+    }
 
     listLibro(){
-        libro.array.forEach(select => {
-            this.checkLibro
+        this.libros.forEach(select => {
+            this.checkLibro(select.titulo);
         });
     }
 }
+
+let libro = new Libro("Hola", "Homero", 5);
+libro.describir();
+
+let libros = new Libro ("Hola 2", "Homero" , 6);
+let otroLibro = new Libro ("Hola 3", "Homero" , 7);
+
+let catalogo = new Catalogo(libros);
+catalogo.addLibro(otroLibro);
+catalogo.checkLibro("Hola 3");
+catalogo.listLibro();
+
+catalogo.deleteLibro("Hola 2");
+catalogo.listLibro();
