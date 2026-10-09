@@ -5,13 +5,19 @@ class Libro {
         if (numPaginas > 0) {this.numPaginas = numPaginas} else {this.numPaginas = 1};
     }
 
-    describir() {
-        document.body.innerHTML += 
-            "<h1>" + this.titulo + "</h1> <p> " + this.autor + 
-            "</p> <p> " + this.numPaginas + "</p>"
+    esExtenso() {
+        return this.numPaginas >= 300;
     }
 
-    esExtenso() {
-        return numPaginas >= 300;
+    describir() {
+        let largo;
+        if (this.esExtenso()){
+            largo = "es un libro largo"
+        } else{
+            largo = "es un libro corto"
+        }
+        document.body.innerHTML += 
+            "<h1>" + this.titulo + "</h1> <p> " + this.autor + 
+            "</p> <p> " + this.numPaginas + " páginas, " + largo + "</p>"
     }
 }
