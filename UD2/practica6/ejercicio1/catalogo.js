@@ -12,7 +12,9 @@ class Catalogo {
     }
 
     deleteLibro(titulo){
-        this.libros.splice(this.libros.indexOf(titulo))
+        this.libros.forEach(select => {
+            if (select.titulo === titulo) this.libros.splice(select)
+        });
     }
 
     checkLibro(titulo){
