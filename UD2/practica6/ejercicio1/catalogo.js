@@ -30,10 +30,9 @@ class Catalogo {
     }
 
     comprobarRepetidos(titulo){
-        let comprobar = true;
         this.libros.forEach(select => {
             if (select.titulo != titulo) {return false}
         });
-        return comprobar;
+        return true;
     }
 }

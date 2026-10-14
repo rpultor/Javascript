@@ -1,4 +1,5 @@
 let libro = new Libro("Hola", "Homero", 5);
+console.log(libro);
 libro.describir();
 
 let otroLibro = new Libro ("Hola 2", "Homero" , 299);
