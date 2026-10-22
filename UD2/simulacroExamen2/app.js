@@ -1,40 +1,60 @@
 const url = "https://jsonplaceholder.typicode.com/posts?_limit=20";
 
-fetch (url)
-.then (respuesta => {
-    if (!respuesta.ok){
-        throw new Error(`Error HTTP: ${respuesta.status}`);
+let mensajes = [];
+
+const estado = document.getElementById("estado");
+const resultados = document.getElementById("resultados");
+const formulario = document.getElementById("formulario-busqueda");
+const busqueda = document.getElementById("busqueda");
+
+async function cargarMensaje() {
+    document.body.innerHTML += "<h1>Cargando...</h1>";
+    try {
+        const respuesta = await fetch(url);
+
+        if(!respuesta.ok) throw new Error("Error al recibir la información: ", respuesta.status)
+        
+        mensajes = await respuesta.json();
+
+        mostrarMensajes(mensajes);
+    } catch (error) {
+        console.error("No se ha podido obtener la información: ", error.message)
     }
-    return respuesta.json();
-})
-.then (resultados => {
-    const arrayRes = [];
-    resultados.forEach(element => {
-        arrayRes.push(element);
+}
+
+function mostrarMensajes(mensajes){
+    estado.textContent = "";
+
+    mensajes.forEach(mensaje => {
+        const li = document.createElement("li");
+        const h1 = document.createElement("h1");
+        const p = document.createElement("p");
+
+        const titulo = mensaje.title;
+        const cuerpo = mensaje.body;
+
+        h1.append(titulo);
+        p.append(cuerpo);
+        li.append(h1);
+        li.append(p);
+
+        resultados.appendChild(li);
     });
+}
 
-    const submit = document.querySelector("#submit");
 
-    if (submit !== null){
-        submit.addEventListener("click", evento =>{
-            evento.preventDefault();
-            const busqueda = document.textContent("#busqueda");
-            console.log(busqueda)
-    })
+function buscarPorTitulo(evento){
+    console.log("hola")
+    const buscar = busqueda.value.toLowerCase();
+    const elementos = [];
+    for(p of mensajes){
+        if(p.title.toLowerCase().includes(buscar)){
+            elementos.push(p);
+        }
     }
+    mostrarMensajes(elementos);
+}
 
-    if (arrayRes.length == 0){
-        document.body.innerHTML += "No hay elementos";
-    } else {
-        document.body.innerHTML += `<ul>${arrayRes.map((publicacion) => 
-            `<h2 class="titulo">#${publicacion.id} ${publicacion.title}</h2>
-            <li class="texto">${publicacion.body}</li>`).join("")}</ul>`;
-    }
+formulario.addEventListener("submit", buscarPorTitulo);
 
-})
-.catch (error => {
-    console.log("Algo ha salido mal: ", error.message);
-})
-.finally (() => {
-    console.log("Terminado!");
-})
+cargarMensaje();
